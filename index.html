@@ -1,0 +1,73 @@
+import math
+
+def adicao(a, b):
+    return a + b
+
+def multiplicacao(a, b):
+    return a * b
+
+def divisao(a, b):
+    if b == 0:
+        return "Erro: Divisão por zero"
+    return a / b
+
+def seno(x):
+    return math.sin(math.radians(x))
+
+def cosseno(x):
+    return math.cos(math.radians(x))
+
+def tangente(x):
+    return math.tan(math.radians(x))
+
+def fatorial(n):
+    if n < 0:
+        return "Erro: Fatorial de número negativo não existe"
+    return math.factorial(n)
+
+def calculadora():
+    while True:
+        print("\nEscolha a operação:")
+        print("1 - Adição")
+        print("2 - Multiplicação")
+        print("3 - Divisão")
+        print("4 - Seno")
+        print("5 - Cosseno")
+        print("6 - Tangente")
+        print("7 - Fatorial")
+        print("8 - Sair")
+        
+        opcao = input("Digite o número da operação desejada: ")
+        
+        if opcao == '8':
+            print("Saindo da calculadora.")
+            break
+        
+        if opcao in ['1', '2', '3']:
+            a = float(input("Digite o primeiro número: "))
+            b = float(input("Digite o segundo número: "))
+            
+            if opcao == '1':
+                print("Resultado:", adicao(a, b))
+            elif opcao == '2':
+                print("Resultado:", multiplicacao(a, b))
+            elif opcao == '3':
+                print("Resultado:", divisao(a, b))
+        
+        elif opcao in ['4', '5', '6', '7']:
+            x = float(input("Digite o número: "))
+            
+            if opcao == '4':
+                print("Resultado:", seno(x))
+            elif opcao == '5':
+                print("Resultado:", cosseno(x))
+            elif opcao == '6':
+                print("Resultado:", tangente(x))
+            elif opcao == '7':
+                print("Resultado:", fatorial(int(x)))
+        
+        else:
+            print("Opção inválida. Tente novamente.")
+
+if __name__ == "__main__":
+    calculadora()
