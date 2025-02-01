@@ -51,6 +51,10 @@
         }
     </style>
     <script>
+        function inserirNumero(num) {
+            document.getElementById("num1").value += num;
+        }
+
         function calcular(operacao) {
             let resultado;
             let num1 = parseFloat(document.getElementById("num1").value);
@@ -97,17 +101,27 @@
 <body>
     <div class="calculadora">
         <h2>Calculadora</h2>
-        <input type="number" id="num1" placeholder="Digite um número">
+        <input type="text" id="num1" placeholder="Digite um número">
         <input type="number" id="num2" placeholder="Outro número (se necessário)">
         <div class="botoes">
+            <button onclick="inserirNumero('1')">1</button>
+            <button onclick="inserirNumero('2')">2</button>
+            <button onclick="inserirNumero('3')">3</button>
             <button onclick="calcular('adicao')">+</button>
+            <button onclick="inserirNumero('4')">4</button>
+            <button onclick="inserirNumero('5')">5</button>
+            <button onclick="inserirNumero('6')">6</button>
             <button onclick="calcular('multiplicacao')">×</button>
+            <button onclick="inserirNumero('7')">7</button>
+            <button onclick="inserirNumero('8')">8</button>
+            <button onclick="inserirNumero('9')">9</button>
             <button onclick="calcular('divisao')">÷</button>
+            <button onclick="inserirNumero('0')">0</button>
             <button onclick="calcular('seno')">sin</button>
             <button onclick="calcular('cosseno')">cos</button>
             <button onclick="calcular('tangente')">tan</button>
             <button onclick="calcular('fatorial')">n!</button>
-            <button onclick="document.getElementById('resultado').innerText = 'Resultado: '">C</button>
+            <button onclick="document.getElementById('num1').value = ''">C</button>
         </div>
         <h3 id="resultado">Resultado: </h3>
     </div>
