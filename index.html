@@ -4,6 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .calculadora {
+            width: 300px;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 18px;
+            text-align: right;
+        }
+        .botoes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        button {
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            background: #007BFF;
+            color: white;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #resultado {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+    </style>
     <script>
         function calcular(operacao) {
             let resultado;
@@ -49,20 +95,21 @@
     </script>
 </head>
 <body>
-    <h2>Calculadora</h2>
-    <label for="num1">Número 1:</label>
-    <input type="number" id="num1">
-    <label for="num2">Número 2:</label>
-    <input type="number" id="num2">
-    <br><br>
-    <button onclick="calcular('adicao')">Adição</button>
-    <button onclick="calcular('multiplicacao')">Multiplicação</button>
-    <button onclick="calcular('divisao')">Divisão</button>
-    <button onclick="calcular('seno')">Seno</button>
-    <button onclick="calcular('cosseno')">Cosseno</button>
-    <button onclick="calcular('tangente')">Tangente</button>
-    <button onclick="calcular('fatorial')">Fatorial</button>
-    <br><br>
-    <h3 id="resultado">Resultado: </h3>
+    <div class="calculadora">
+        <h2>Calculadora</h2>
+        <input type="number" id="num1" placeholder="Digite um número">
+        <input type="number" id="num2" placeholder="Outro número (se necessário)">
+        <div class="botoes">
+            <button onclick="calcular('adicao')">+</button>
+            <button onclick="calcular('multiplicacao')">×</button>
+            <button onclick="calcular('divisao')">÷</button>
+            <button onclick="calcular('seno')">sin</button>
+            <button onclick="calcular('cosseno')">cos</button>
+            <button onclick="calcular('tangente')">tan</button>
+            <button onclick="calcular('fatorial')">n!</button>
+            <button onclick="document.getElementById('resultado').innerText = 'Resultado: '">C</button>
+        </div>
+        <h3 id="resultado">Resultado: </h3>
+    </div>
 </body>
 </html>
