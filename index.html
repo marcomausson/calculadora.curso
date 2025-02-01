@@ -21,12 +21,14 @@
             border-radius: 10px;
             text-align: center;
         }
-        input {
+        .resultado {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
-            font-size: 18px;
+            font-size: 24px;
             text-align: right;
+            background: #eee;
+            border-radius: 5px;
         }
         .botoes {
             display: grid;
@@ -45,64 +47,70 @@
         button:hover {
             background: #0056b3;
         }
-        #resultado {
-            font-size: 20px;
-            margin-top: 10px;
-        }
     </style>
     <script>
+        let expressao = "";
+
         function inserirNumero(num) {
-            document.getElementById("num1").value += num;
+            expressao += num;
+            document.getElementById("resultado").innerText = expressao;
         }
 
         function calcular(operacao) {
             let resultado;
-            let num1 = parseFloat(document.getElementById("num1").value);
-            let num2 = parseFloat(document.getElementById("num2").value);
+            let num = parseFloat(expressao);
             
             switch (operacao) {
                 case 'adicao':
-                    resultado = num1 + num2;
+                    expressao += '+';
                     break;
                 case 'multiplicacao':
-                    resultado = num1 * num2;
+                    expressao += '*';
                     break;
                 case 'divisao':
-                    resultado = num2 !== 0 ? num1 / num2 : "Erro: Divisão por zero";
+                    expressao += '/';
                     break;
                 case 'seno':
-                    resultado = Math.sin(num1 * Math.PI / 180);
+                    resultado = Math.sin(num * Math.PI / 180);
                     break;
                 case 'cosseno':
-                    resultado = Math.cos(num1 * Math.PI / 180);
+                    resultado = Math.cos(num * Math.PI / 180);
                     break;
                 case 'tangente':
-                    resultado = Math.tan(num1 * Math.PI / 180);
+                    resultado = Math.tan(num * Math.PI / 180);
                     break;
                 case 'fatorial':
-                    resultado = fatorial(Math.floor(num1));
+                    resultado = fatorial(Math.floor(num));
                     break;
-                default:
-                    resultado = "Operação inválida";
+                case 'igual':
+                    resultado = eval(expressao);
+                    break;
             }
-            document.getElementById("resultado").innerText = "Resultado: " + resultado;
+            if (resultado !== undefined) {
+                expressao = resultado.toString();
+                document.getElementById("resultado").innerText = resultado;
+            }
         }
 
         function fatorial(n) {
-            if (n < 0) return "Erro: Fatorial de número negativo não existe";
+            if (n < 0) return "Erro";
             let res = 1;
             for (let i = 1; i <= n; i++) {
                 res *= i;
             }
             return res;
         }
+
+        function limpar() {
+            expressao = "";
+            document.getElementById("resultado").innerText = "";
+        }
     </script>
 </head>
 <body>
     <div class="calculadora">
         <h2>Calculadora</h2>
-        <input type="text" id="num1" placeholder="Digite um número">
-        <input type="number" id="num2" placeholder="Outro número (se necessário)">
+        <div id="resultado" class="resultado"></div>
         <div class="botoes">
             <button onclick="inserirNumero('1')">1</button>
             <button onclick="inserirNumero('2')">2</button>
@@ -121,9 +129,9 @@
             <button onclick="calcular('cosseno')">cos</button>
             <button onclick="calcular('tangente')">tan</button>
             <button onclick="calcular('fatorial')">n!</button>
-            <button onclick="document.getElementById('num1').value = ''">C</button>
+            <button onclick="calcular('igual')">=</button>
+            <button onclick="limpar()">C</button>
         </div>
-        <h3 id="resultado">Resultado: </h3>
     </div>
 </body>
 </html>
