@@ -1,73 +1,68 @@
-import math
-
-def adicao(a, b):
-    return a + b
-
-def multiplicacao(a, b):
-    return a * b
-
-def divisao(a, b):
-    if b == 0:
-        return "Erro: Divisão por zero"
-    return a / b
-
-def seno(x):
-    return math.sin(math.radians(x))
-
-def cosseno(x):
-    return math.cos(math.radians(x))
-
-def tangente(x):
-    return math.tan(math.radians(x))
-
-def fatorial(n):
-    if n < 0:
-        return "Erro: Fatorial de número negativo não existe"
-    return math.factorial(n)
-
-def calculadora():
-    while True:
-        print("\nEscolha a operação:")
-        print("1 - Adição")
-        print("2 - Multiplicação")
-        print("3 - Divisão")
-        print("4 - Seno")
-        print("5 - Cosseno")
-        print("6 - Tangente")
-        print("7 - Fatorial")
-        print("8 - Sair")
-        
-        opcao = input("Digite o número da operação desejada: ")
-        
-        if opcao == '8':
-            print("Saindo da calculadora.")
-            break
-        
-        if opcao in ['1', '2', '3']:
-            a = float(input("Digite o primeiro número: "))
-            b = float(input("Digite o segundo número: "))
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <script>
+        function calcular(operacao) {
+            let resultado;
+            let num1 = parseFloat(document.getElementById("num1").value);
+            let num2 = parseFloat(document.getElementById("num2").value);
             
-            if opcao == '1':
-                print("Resultado:", adicao(a, b))
-            elif opcao == '2':
-                print("Resultado:", multiplicacao(a, b))
-            elif opcao == '3':
-                print("Resultado:", divisao(a, b))
-        
-        elif opcao in ['4', '5', '6', '7']:
-            x = float(input("Digite o número: "))
-            
-            if opcao == '4':
-                print("Resultado:", seno(x))
-            elif opcao == '5':
-                print("Resultado:", cosseno(x))
-            elif opcao == '6':
-                print("Resultado:", tangente(x))
-            elif opcao == '7':
-                print("Resultado:", fatorial(int(x)))
-        
-        else:
-            print("Opção inválida. Tente novamente.")
+            switch (operacao) {
+                case 'adicao':
+                    resultado = num1 + num2;
+                    break;
+                case 'multiplicacao':
+                    resultado = num1 * num2;
+                    break;
+                case 'divisao':
+                    resultado = num2 !== 0 ? num1 / num2 : "Erro: Divisão por zero";
+                    break;
+                case 'seno':
+                    resultado = Math.sin(num1 * Math.PI / 180);
+                    break;
+                case 'cosseno':
+                    resultado = Math.cos(num1 * Math.PI / 180);
+                    break;
+                case 'tangente':
+                    resultado = Math.tan(num1 * Math.PI / 180);
+                    break;
+                case 'fatorial':
+                    resultado = fatorial(Math.floor(num1));
+                    break;
+                default:
+                    resultado = "Operação inválida";
+            }
+            document.getElementById("resultado").innerText = "Resultado: " + resultado;
+        }
 
-if __name__ == "__main__":
-    calculadora()
+        function fatorial(n) {
+            if (n < 0) return "Erro: Fatorial de número negativo não existe";
+            let res = 1;
+            for (let i = 1; i <= n; i++) {
+                res *= i;
+            }
+            return res;
+        }
+    </script>
+</head>
+<body>
+    <h2>Calculadora</h2>
+    <label for="num1">Número 1:</label>
+    <input type="number" id="num1">
+    <label for="num2">Número 2:</label>
+    <input type="number" id="num2">
+    <br><br>
+    <button onclick="calcular('adicao')">Adição</button>
+    <button onclick="calcular('multiplicacao')">Multiplicação</button>
+    <button onclick="calcular('divisao')">Divisão</button>
+    <button onclick="calcular('seno')">Seno</button>
+    <button onclick="calcular('cosseno')">Cosseno</button>
+    <button onclick="calcular('tangente')">Tangente</button>
+    <button onclick="calcular('fatorial')">Fatorial</button>
+    <br><br>
+    <h3 id="resultado">Resultado: </h3>
+</body>
+</html>
